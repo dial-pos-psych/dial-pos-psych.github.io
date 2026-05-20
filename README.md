@@ -1,4 +1,4 @@
-﻿# Dialectical Positive Psychology
+# Dialectical Positive Psychology
 
 Static Jekyll site published with GitHub Pages.
 
