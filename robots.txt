@@ -1,0 +1,25 @@
+# Global rules
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /blog/ker-wp
+Disallow: /blog/ker
+Disallow: /blog/map
+Disallow: /search
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /*.json$
+Allow: /sitemap.xml
+Allow: /rss.xml
+
+# Crawl-delay directive
+Crawl-delay: 10
+
+# Host preference
+Host: dial-pos-psych.ru
+
+# Sitemaps
+Sitemap: https://dial-pos-psych.ru/sitemap.xml
+
+# Clean parameters
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content

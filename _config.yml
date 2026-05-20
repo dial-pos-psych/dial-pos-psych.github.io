@@ -1,0 +1,52 @@
+title: "Диалектическая позитивная психология"
+description: "Об искусстве жить, опираясь на материалистическую диалектику и позитивную психологию"
+url: "https://dial-pos-psych.ru"
+baseurl: ""
+lang: ru
+timezone: Europe/Moscow
+encoding: utf-8
+destination: _site
+markdown: kramdown
+highlighter: rouge
+excerpt_separator: "<!-- excerpt-disabled -->"
+
+plugins:
+  - jekyll-seo-tag
+
+include:
+  - .htaccess
+  - .well-known
+
+exclude:
+  - _site
+  - .venv
+  - .bundle
+  - .jekyll-cache
+  - .jekyll-server.log
+  - bash.exe.stackdump
+  - .gitignore
+  - .ruby-version
+  - .well-known/acme-challenge
+  - admin
+  - auth
+  - config.php
+  - content-inbox
+  - github-pages-site
+  - ker-course-free
+  - ker-gp
+  - log
+  - php
+  - tmp
+  - tools
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - README-GITHUB-PAGES.md
+  - DEVELOPER.md
+  - CONTENT_WORKFLOW.md
+  - recovery-report.json
+
+collections:
+  posts:
+    output: true

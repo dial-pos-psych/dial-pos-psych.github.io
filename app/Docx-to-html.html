@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер DOCX в HTML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .file-drop-area {
+            transition: all 0.3s ease;
+        }
+        .file-drop-area.drag-over {
+            background-color: #313b4e;
+            border-color: #6AF1E2;
+        }
+    </style>
+</head>
+<body class="bg-[#17212B] text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl bg-[#0E1621] p-8 rounded-lg shadow-2xl border border-gray-700">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-[#3AE2CE]">Конвертер DOCX в HTML</h1>
+            <p class="text-gray-400 mt-2">Загрузите .docx файл, и он будет преобразован в чистый HTML.</p>
+        </div>
+
+        <!-- File Upload Area -->
+        <div id="fileDropArea" class="file-drop-area border-2 border-dashed border-gray-600 rounded-lg p-10 text-center cursor-pointer hover:border-[#3AE2CE] hover:bg-[#1f2a38]">
+            <input type="file" id="fileInput" class="hidden" accept=".docx">
+            <div id="fileUploadContent">
+                <svg class="mx-auto h-12 w-12 text-gray-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="mt-4 text-gray-400"><span class="font-semibold text-[#4B82E5]">Нажмите для загрузки</span> или перетащите файл</p>
+                <p class="text-xs text-gray-500 mt-1">DOCX only</p>
+            </div>
+            <div id="fileNameDisplay" class="hidden font-medium text-lg text-gray-300"></div>
+        </div>
+        
+        <!-- Options -->
+        <div class="mt-6">
+            <label for="imagePathPrefix" class="block text-sm font-medium text-[#3AE2CE] mb-2">Префикс пути для изображений (необязательно)</label>
+            <input type="text" id="imagePathPrefix" placeholder="например, my-article/images" class="w-full bg-[#17212B] border border-[#3AE2CE] rounded-md px-3 py-2 text-white focus:ring-2 focus:ring-[#3AE2CE] focus:outline-none">
+        </div>
+
+        <!-- Action Button -->
+        <div class="mt-8">
+            <button id="convertBtn" class="w-full bg-[#6AF1E2] text-black font-bold py-3 px-4 rounded-lg hover:bg-[#8EF1E6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0E1621] focus:ring-[#6AF1E2] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                Конвертировать
+            </button>
+        </div>
+
+        <!-- Status & Result Area -->
+        <div id="status" class="mt-6 text-center text-yellow-400"></div>
+        <div id="result" class="mt-6 text-center hidden">
+             <a id="downloadLink" class="w-full inline-block bg-[#4B82E5] text-white font-bold py-3 px-4 rounded-lg hover:bg-[#78A3F2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0E1621] focus:ring-[#4B82E5] transition duration-300">
+                Скачать готовый HTML
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileDropArea = document.getElementById('fileDropArea');
+        const fileUploadContent = document.getElementById('fileUploadContent');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusEl = document.getElementById('status');
+        const resultEl = document.getElementById('result');
+        const downloadLink = document.getElementById('downloadLink');
+        const imagePathPrefixInput = document.getElementById('imagePathPrefix');
+
+        let currentFile = null;
+
+        // --- Drag and Drop Logic ---
+        fileDropArea.addEventListener('click', () => fileInput.click());
+        fileDropArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileDropArea.classList.add('drag-over');
+        });
+        fileDropArea.addEventListener('dragleave', () => {
+            fileDropArea.classList.remove('drag-over');
+        });
+        fileDropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileDropArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].name.toLowerCase().endsWith('.docx')) {
+                handleFile(files[0]);
+            } else {
+                showStatus('Ошибка: Пожалуйста, выберите файл .docx', true);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            currentFile = file;
+            fileUploadContent.classList.add('hidden');
+            fileNameDisplay.classList.remove('hidden');
+            fileNameDisplay.textContent = file.name;
+            convertBtn.disabled = false;
+            resetResult();
+        }
+
+        function showStatus(message, isError = false) {
+            statusEl.textContent = message;
+            statusEl.className = `mt-6 text-center ${isError ? 'text-red-400' : 'text-yellow-400'}`;
+        }
+        
+        function resetResult() {
+            statusEl.textContent = '';
+            resultEl.classList.add('hidden');
+            downloadLink.removeAttribute('href');
+            downloadLink.removeAttribute('download');
+        }
+
+        convertBtn.addEventListener('click', async () => {
+            if (!currentFile) {
+                showStatus('Сначала выберите файл!', true);
+                return;
+            }
+
+            resetResult();
+            showStatus('Идет обработка файла...');
+            convertBtn.disabled = true;
+
+            const reader = new FileReader();
+            reader.onloadend = async (event) => {
+                const arrayBuffer = event.target.result;
+                try {
+                    const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer }, {
+                        // Эта опция заменяет тег img на пустой, чтобы мы могли обработать его сами
+                        convertImage: mammoth.images.inline(() => ({ src: "", alt: "" }))
+                    });
+
+                    let html = result.value;
+                    const messages = result.messages;
+
+                    if (messages && messages.length > 0) {
+                        console.warn("Сообщения от Mammoth.js:", messages);
+                    }
+
+                    // --- Запускаем цепочку обработки HTML ---
+                    html = processAll(html);
+                    
+                    const newFileName = currentFile.name.replace(/\.docx$/, '.html');
+                    const blob = new Blob([html], { type: 'text/html' });
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = newFileName;
+
+                    resultEl.classList.remove('hidden');
+                    showStatus('Конвертация успешно завершена!', false);
+
+                } catch (error) {
+                    console.error(error);
+                    showStatus(`Произошла ошибка: ${error.message}`, true);
+                } finally {
+                    convertBtn.disabled = false;
+                }
+            };
+            reader.readAsArrayBuffer(currentFile);
+        });
+        
+        // --- Функции постобработки ---
+        // Это JavaScript-версии функций из вашего Python-скрипта
+
+        function processAll(html) {
+            html = removeWordAnchors(html);
+            html = processBlockquotes(html);
+            html = processImages(html);
+            html = formatLists(html);
+            html = processTableOfContents(html);
+            html = formatLinks(html);
+            html = processAuthorTag(html);
+            html = replaceTypographyQuotes(html);
+            return html;
+        }
+
+        function removeWordAnchors(html) {
+            return html.replace(/<a\s+id="(_Hlk|OLE_LINK)[^"]*">\s*<\/a>/gi, "");
+        }
+
+        function processBlockquotes(html) {
+            html = html.replace(/<p>\s*\[sc\]\s*<\/p>(.*?)<p>\s*\[\/sc\]\s*<\/p>/gis, '<blockquote class="citata">$1</blockquote>');
+            html = html.replace(/<p>\s*\[cc\]\s*<\/p>(.*?)<p>\s*\[\/cc\]\s*<\/p>/gis, '<blockquote class="primer">$1</blockquote>');
+            html = html.replace(/<p>\s*\[kc\]\s*<\/p>(.*?)<p>\s*\[\/kc\]\s*<\/p>/gis, '<blockquote class="alert">$1</blockquote>');
+            return html;
+        }
+
+        function processImages(html) {
+            const tagsRaw = html.split(/(<(?:p|h[1-6]|ul|ol|blockquote)>.*?<\/(?:p|h[1-6]|ul|ol|blockquote)>)/i);
+            const tags = tagsRaw.filter(tag => tag && tag.trim());
+            
+            const processedTags = [];
+            let i = 0;
+            let imageCounter = 1;
+            const imgPlaceholderRegex = /<img\s+.*?src=""[^>]*>/i;
+            const pathPrefix = imagePathPrefixInput.value.trim().replace(/\\/g, "/");
+
+            while (i < tags.length) {
+                let currentTag = tags[i];
+                if (imgPlaceholderRegex.test(currentTag)) {
+                    let textFromBrackets = "";
+                    let hasMetadata = false;
+                    let tagsToConsume = 1;
+
+                    if (i + 1 < tags.length) {
+                        const nextTag = tags[i+1];
+                        const metaMatch = /\[([^\]]+)\]/i.exec(nextTag);
+                        if (metaMatch) {
+                            textFromBrackets = metaMatch[1].trim();
+                            hasMetadata = true;
+                            tagsToConsume++;
+                        }
+                    }
+
+                    const escapedText = textFromBrackets.replace(/"/g, '&quot;');
+                    const imageFilename = `${pathPrefix ? pathPrefix + '/' : ''}${String(imageCounter).padStart(2, '0')}.webp`;
+                    imageCounter++;
+                    
+                    const imgTag = `<img src="${imageFilename}"\n     alt="${escapedText}"\n     title="${escapedText}"\n     class="img-responsive"\n     loading="lazy" />`;
+                    processedTags.push(imgTag);
+
+                    if (hasMetadata) {
+                        const captionTag = `<p class="caption">${textFromBrackets}</p>`;
+                        processedTags.push(captionTag);
+                    }
+                    i += tagsToConsume;
+                } else {
+                    processedTags.push(currentTag);
+                    i++;
+                }
+            }
+            return processedTags.join("\n");
+        }
+
+        function formatLists(html) {
+            return html.replace(/<ul>(.*?)<\/ul>/gis, (match, ulContent) => {
+                const modifiedContent = ulContent.replace(/<li>/gi, '<li><i class="fa fa-check" style="color: #ff5c00"></i> ');
+                return `<ul>${modifiedContent}</ul>`;
+            });
+        }
+
+        function processTableOfContents(html) {
+            const tocPlaceholderPattern = /<p>\s*\[Оглавление\]\s*<\/p>/i;
+            if (!tocPlaceholderPattern.test(html)) {
+                return html;
+            }
+
+            const headings = [];
+            let idCounter = 1;
+            const htmlWithIds = html.replace(/<(h[23])>(.*?)<\/\1>/gi, (match, tag, content) => {
+                const newId = `toc-${idCounter}`;
+                const textContent = content.trim();
+                headings.push({ level: parseInt(tag[1]), text: textContent, id: newId });
+                idCounter++;
+                return `<${tag} id="${newId}">${content}</${tag}>`;
+            });
+
+            if (headings.length === 0) {
+                return htmlWithIds.replace(tocPlaceholderPattern, "");
+            }
+
+            let tocHtml = "";
+            let lastLevel = 1;
+            headings.forEach(h => {
+                if (h.level > lastLevel) tocHtml += "<ul>";
+                else if (h.level < lastLevel) tocHtml += "</li></ul>".repeat(lastLevel - h.level) + "</li>";
+                else tocHtml += "</li>";
+                tocHtml += `<li><a class="pencil" href="#${h.id}">${h.text}</a>`;
+                lastLevel = h.level;
+            });
+
+            tocHtml += "</li></ul>".repeat(lastLevel - 1);
+            if (tocHtml.startsWith("</li>")) tocHtml = tocHtml.substring(5);
+            if (tocHtml.startsWith("<ul>")) tocHtml = tocHtml.replace("<ul>", '<ul class="plan-list">');
+            
+            const finalTocBlock = `<div class="plan"><h6 class="header-plan">Оглавление:</h6>${tocHtml}</div>`;
+            return htmlWithIds.replace(tocPlaceholderPattern, finalTocBlock);
+        }
+        
+        function formatLinks(html) {
+            return html.replace(/<a href="([^"]*)">(.*?)<\/a>/gi, (match, url, text) => {
+                if (url.includes("disk.yandex.ru")) {
+                    return `<a class="cloud-link" href="${url}" target="_blank">${text}</a>`;
+                } else if (url.includes("https://dial-pos-psych.ru")) {
+                     return `<a class="link" href="${url}" target="_blank">${text}</a>`;
+                } else {
+                    return `<a class="ext-link" target="_blank" rel="noopener" href="${url}">${text}</a>`;
+                }
+            });
+        }
+        
+        function processAuthorTag(html) {
+            return html.replace(/<p>\[a\]\s*(.+?)\s*<\/p>/i, '<span class="avtor">$1</span>');
+        }
+        
+        function replaceTypographyQuotes(html) {
+            const parts = html.split(/(<[^>]+>)/);
+            const processedParts = parts.map((part, i) => {
+                if (i % 2 === 1) return part; // Это тег, пропускаем
+                
+                part = part.replace(/&quot;|“|”|„/g, '"');
+                let output = '';
+                let isOpenQuote = true;
+                for (let char of part) {
+                    if (char === '"') {
+                        output += isOpenQuote ? '«' : '»';
+                        isOpenQuote = !isOpenQuote;
+                    } else {
+                        output += char;
+                    }
+                }
+                return output;
+            });
+            return processedParts.join('');
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер чатов VK</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .file-drop-area {
+            transition: all 0.3s ease;
+        }
+        .file-drop-area.drag-over {
+            background-color: #313b4e;
+            border-color: #6AF1E2;
+        }
+        #fileList li {
+            background-color: #1f2a38;
+        }
+    </style>
+</head>
+<body class="bg-[#17212B] text-white flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl bg-[#0E1621] p-8 rounded-lg shadow-2xl border border-gray-700">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-[#3AE2CE]">Конвертер чатов VK</h1>
+            <p class="text-gray-400 mt-2">Преобразуйте архив сообщений VK в один удобный HTML-файл.</p>
+        </div>
+
+        <!-- File Upload Area -->
+        <div id="fileDropArea" class="file-drop-area border-2 border-dashed border-gray-600 rounded-lg p-10 text-center cursor-pointer hover:border-[#3AE2CE] hover:bg-[#1f2a38]">
+            <input type="file" id="fileInput" class="hidden" accept=".html" multiple>
+            <div id="fileUploadContent">
+                 <svg class="mx-auto h-12 w-12 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                </svg>
+                <p class="mt-4 text-gray-400"><span class="font-semibold text-[#4B82E5]">Нажмите для загрузки</span> или перетащите файлы</p>
+                <p class="text-xs text-gray-500 mt-1">Выберите все ваши `messages*.html` файлы</p>
+            </div>
+             <div id="fileInfoDisplay" class="hidden font-medium text-lg text-gray-300"></div>
+        </div>
+        
+        <!-- Action Button -->
+        <div class="mt-8">
+            <button id="convertBtn" class="w-full bg-[#6AF1E2] text-black font-bold py-3 px-4 rounded-lg hover:bg-[#8EF1E6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0E1621] focus:ring-[#6AF1E2] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                Конвертировать
+            </button>
+        </div>
+
+        <!-- Status & Result Area -->
+        <div id="status" class="mt-6 text-center text-yellow-400"></div>
+        <div id="result" class="mt-6 text-center hidden">
+             <a id="downloadLink" class="w-full inline-block bg-[#4B82E5] text-white font-bold py-3 px-4 rounded-lg hover:bg-[#78A3F2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0E1621] focus:ring-[#4B82E5] transition duration-300">
+                Скачать ZIP-архив
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileDropArea = document.getElementById('fileDropArea');
+        const fileUploadContent = document.getElementById('fileUploadContent');
+        const fileInfoDisplay = document.getElementById('fileInfoDisplay');
+        const convertBtn = document.getElementById('convertBtn');
+        const statusEl = document.getElementById('status');
+        const resultEl = document.getElementById('result');
+        const downloadLink = document.getElementById('downloadLink');
+
+        let currentFiles = [];
+
+        // --- Drag and Drop Logic ---
+        fileDropArea.addEventListener('click', () => fileInput.click());
+        ['dragover', 'dragenter'].forEach(eventName => {
+            fileDropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropArea.classList.add('drag-over');
+            });
+        });
+        ['dragleave', 'dragend', 'drop'].forEach(eventName => {
+            fileDropArea.addEventListener(eventName, () => {
+                fileDropArea.classList.remove('drag-over');
+            });
+        });
+        fileDropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            const messageFiles = Array.from(files).filter(file => /^messages\d*\.html$/i.test(file.name));
+            if (messageFiles.length === 0) {
+                showStatus('Ошибка: Пожалуйста, выберите файлы с именами `messages*.html`', true);
+                return;
+            }
+            
+            currentFiles = messageFiles;
+            fileUploadContent.classList.add('hidden');
+            fileInfoDisplay.classList.remove('hidden');
+            fileInfoDisplay.textContent = `Выбрано файлов: ${currentFiles.length}`;
+            convertBtn.disabled = false;
+            resetResult();
+        }
+
+        function showStatus(message, isError = false) {
+            statusEl.textContent = message;
+            statusEl.className = `mt-6 text-center ${isError ? 'text-red-400' : 'text-yellow-400'}`;
+        }
+        
+        function resetResult() {
+            statusEl.textContent = '';
+            resultEl.classList.add('hidden');
+            downloadLink.removeAttribute('href');
+            downloadLink.removeAttribute('download');
+        }
+        
+        // --- Core Logic ---
+        async function convertFiles() {
+            if (currentFiles.length === 0) {
+                showStatus('Сначала выберите файлы!', true);
+                return;
+            }
+
+            resetResult();
+            showStatus('Чтение файлов...');
+            convertBtn.disabled = true;
+
+            try {
+                // Step 1: Read all files and parse them
+                const fileReadPromises = currentFiles.map(file => {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve({ file, content: reader.result });
+                        reader.onerror = reject;
+                        reader.readAsText(file, 'cp1251'); // VK archives often use this encoding
+                    });
+                });
+
+                const filesData = await Promise.all(fileReadPromises);
+                
+                showStatus('Парсинг сообщений...');
+                const parser = new DOMParser();
+                let allMessagesData = [];
+
+                for (const fileData of filesData) {
+                    const doc = parser.parseFromString(fileData.content, 'text/html');
+                    const messageDivs = doc.querySelectorAll('div.message');
+                    const fileMessages = [];
+                    
+                    messageDivs.forEach(msgDiv => {
+                        const headerEl = msgDiv.querySelector('.message__header');
+                        const bodyEl = headerEl ? headerEl.nextElementSibling : null;
+                        if (headerEl && bodyEl) {
+                           // Clean up body from attachments etc.
+                           bodyEl.querySelectorAll('.kludges, .attachment').forEach(el => el.remove());
+                           const headerText = headerEl.textContent.trim();
+                           const bodyText = bodyEl.textContent.trim();
+                           
+                           if (headerText || bodyText) {
+                               fileMessages.push({ header: headerText, body: bodyText });
+                           }
+                        }
+                    });
+                    
+                    const fileNumber = extractNumberFromFilename(fileData.file.name);
+                    allMessagesData.push({ number: fileNumber, messages: fileMessages.reverse() });
+                }
+
+                // Step 2: Sort and combine messages
+                showStatus('Сортировка сообщений...');
+                allMessagesData.sort((a, b) => b.number - a.number); // Sort by number descending
+                
+                const finalChronologicalMessages = allMessagesData.flatMap(data => data.messages);
+
+                // Step 3: Generate final HTML and CSS
+                showStatus('Генерация итоговых файлов...');
+                const cssContent = generateCssContent();
+                const htmlContent = generateHtmlContent(finalChronologicalMessages);
+
+                // Step 4: Create a zip and offer for download
+                showStatus('Создание ZIP-архива...');
+                const zip = new JSZip();
+                zip.file("style_chat_view.css", cssContent);
+                zip.file("conversation_chat_view.html", htmlContent);
+                
+                const zipBlob = await zip.generateAsync({ type: "blob" });
+                
+                downloadLink.href = URL.createObjectURL(zipBlob);
+                downloadLink.download = "vk_chat_archive.zip";
+                
+                resultEl.classList.remove('hidden');
+                showStatus('Конвертация успешно завершена!', false);
+
+            } catch (error) {
+                console.error(error);
+                showStatus(`Произошла ошибка: ${error.message}`, true);
+            } finally {
+                convertBtn.disabled = false;
+            }
+        }
+
+        convertBtn.addEventListener('click', convertFiles);
+
+        // --- Helper functions (JS versions of Python logic) ---
+
+        function extractNumberFromFilename(filename) {
+            const match = filename.match(/messages(\d+)\.html$/i);
+            return match ? parseInt(match[1], 10) : 0; // Use 0 for messages.html
+        }
+        
+        /**
+         * **REWRITTEN AND FINAL VERSION**
+         * This function now uses a simple and robust logic to determine the author.
+         * If the header contains a comma, the author is the part before the last comma.
+         * If there's no comma, the author is "Вы" (You).
+         */
+        function parseHeaderFinal(headerLine) {
+            const cleanedHeader = headerLine.replace(/\u00A0/g, ' ').replace('(ред.)', '').trim();
+            const lastCommaIndex = cleanedHeader.lastIndexOf(',');
+
+            if (lastCommaIndex !== -1) {
+                // A comma exists: Author is before, date is after.
+                const authorStr = cleanedHeader.substring(0, lastCommaIndex).trim();
+                const dateTimeStr = cleanedHeader.substring(lastCommaIndex + 1).trim();
+                return { author: authorStr, datetime: dateTimeStr };
+            } else {
+                // No comma: The entire string is the date, author is "Вы".
+                return { author: "Вы", datetime: cleanedHeader };
+            }
+        }
+
+        function generateHtmlContent(messages) {
+            let htmlMessageBlocks = '';
+            for (const msg of messages) {
+                const { author, datetime } = parseHeaderFinal(msg.header);
+                const body = msg.body;
+
+                const safeAuthor = author.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const safeBody = body.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br>');
+                const safeDatetime = datetime.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+                const isYou = (author.trim() === "Вы");
+                const alignmentClass = isYou ? "message-right" : "message-left";
+                const authorHtml = !isYou ? `<span class="author">${safeAuthor}</span>` : '';
+                const bodyContentHtml = body ? `<div class="body">${safeBody}</div>` : '<div class="body"><span class="empty-message">(пустое сообщение)</span></div>';
+
+                const htmlBlock = `<div class="message ${alignmentClass}"><div class="header">${authorHtml}<span class="datetime">(${safeDatetime})</span></div>${bodyContentHtml}</div>`;
+                htmlMessageBlocks += htmlBlock;
+            }
+
+            return `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>История переписки</title>
+    <link rel="stylesheet" href="style_chat_view.css">
+</head>
+<body>
+    <div class="container">
+        <h1>История переписки</h1>
+        ${htmlMessageBlocks}
+    </div>
+</body>
+</html>`;
+        }
+
+        function generateCssContent() {
+            return `
+body { font-family: 'Aptos', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #282C34; color: #ABB2BF; line-height: 1.6; margin: 0; padding: 20px; }
+.container { max-width: 900px; margin: 20px auto; background-color: #21252B; padding: 25px 40px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); border: 1px solid #3E4451; display: flex; flex-direction: column; gap: 12px; }
+h1 { text-align: center; color: #E6E6E6; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #3E4451; font-weight: 400; }
+.message { padding: 12px 18px; border-radius: 18px; line-height: 1.5; word-wrap: break-word; max-width: 80%; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.message-left { align-self: flex-start; background-color: #2C313A; border-top-left-radius: 5px; text-align: left; color: #D3D3D3; }
+.message-left .author { color: #3AE2CE; margin-right: 10px; display: block; font-size: 0.95em; margin-bottom: 4px; font-weight: bold; }
+.message-left .datetime { font-size: 0.8em; color: #7F848E; display: block; text-align: left; }
+.message-left .body { margin-top: 5px; }
+.message-right { align-self: flex-end; background-color: #005A8D; border-top-right-radius: 5px; text-align: left; color: #F0F0F0; }
+.message-right .author { display: none; }
+.message-right .header { text-align: right; margin-bottom: 3px; }
+.message-right .datetime { font-size: 0.8em; color: #A3D5FF; display: inline; }
+.message-right .body { margin-top: 5px; color: #f5f5f5; }
+.header { margin-bottom: 5px; }
+.body { white-space: pre-wrap; font-size: 1.05em; }
+.empty-message { color: #8a9aab; font-style: italic; }`;
+        }
+
+    </script>
+</body>
+</html>
+

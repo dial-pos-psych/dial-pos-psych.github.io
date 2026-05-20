@@ -1,0 +1,18 @@
+{% assign page_header_title = page.page_header | default: page.title %}
+{% assign page_header_icon = page.page_icon | default: page.icon_class %}
+{% assign page_header_image = page.page_image | default: page.image | default: "/img/blue-bg.webp" | replace: site.url, "" %}
+
+{% unless page.hide_page_header %}
+<section>
+  <div class="cat-header-page"{% if page_header_image != "" %} style="background-image: url('{{ page_header_image }}')"{% endif %}>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="cat-header-block-page cat-header-block-page__center">
+          {% if page_header_icon %}<i class="{{ page_header_icon }}"></i>{% endif %}
+          <h1>{{ page_header_title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endunless %}

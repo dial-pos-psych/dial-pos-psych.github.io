@@ -1,0 +1,308 @@
+/* One Dark Pro Theme */
+body.dark-theme {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+
+body.dark-theme .container-fluid {
+  background-color: #282c34;
+}
+
+body.dark-theme .category-in-blog {
+  color: #61afef;
+}
+
+body.dark-theme .pagination-section {
+  background-color: #282c34;
+}
+
+body.dark-theme .donate-border {
+  color: #e0e0e0;
+  border: 1px solid  #ff5c00;
+}
+
+body.dark-theme .ui-widget-content {
+  border: 1px solid #5c6370;
+  background-color: #282c34;
+}
+
+body.dark-theme .article-body h1,
+body.dark-theme .article-body h2,
+body.dark-theme .article-body h3,
+body.dark-theme .article-body h4,
+body.dark-theme .article-body h5,
+body.dark-theme .article-body h6 {
+  color: #e0e0e0;
+}
+
+body.dark-theme .accordion-header {
+  background-color: #282c34;
+}
+
+body.dark-theme .article-content {
+  background-color: #282c34;
+}
+
+body.dark-theme .all-posts-header {
+  color: #61afef;
+}
+
+body.dark-theme .breadcrumbs {
+  border-bottom: 2px solid #5c6370;
+}
+
+/* Sidebar Styles */
+body.dark-theme .main-aside .as-header,
+body.dark-theme .main-aside .lb-header {
+  color: #abb2bf;
+  background-color: #5c6370;
+}
+
+body.dark-theme .main-aside .aside-wrap a {
+  color: #61afef;
+}
+
+body.dark-theme .main-aside .aside-wrap a:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .main-aside {
+  background-color: #282c34;
+}
+
+body.dark-theme .as-h4 {
+  color: #e0e0e0;
+  border: none;
+}
+
+body.dark-theme .zag_gl {
+  color: #e0e0e0;
+}
+
+body.dark-theme .top-main-menu {
+  background-color: #21252b;
+}
+
+body.dark-theme h4.category-in-blog {
+  color: #61afef;
+}
+
+body.dark-theme .main-aside .aside-block {
+  border-bottom: 1px solid #5c6370;
+  background-color: #282c34;
+  padding: 0;
+  border: none;
+}
+
+body.dark-theme .type-one-first h3 a,
+body.dark-theme .item-title-white .item-title-content h3 a {
+  color: #e0e0e0;
+}
+
+body.dark-theme .type-one-first h3 a:hover,
+body.dark-theme .item-title-white .item-title-content h3 a:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .breadcrumbs .br-item-1,
+body.dark-theme .breadcrumbs .br-item-2 {
+  color: #61afef;
+}
+
+body.dark-theme .breadcrumbs .br-item-1:hover,
+body.dark-theme .breadcrumbs .br-item-2:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .main-aside .aside-wrap {
+  background-color: #282c34;
+  border-right: 5px solid #5c6370;
+  border-bottom: 5px solid #5c6370;
+  border-left: 5px solid #5c6370;
+}
+
+body.dark-theme .page-header-meta a {
+  color: white;
+}
+
+body.dark-theme .polit a:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .icon-marker {
+  color: #e0e0e0;
+}
+
+body.dark-theme .polit a {
+  color: #e0e0e0;
+}
+
+body.dark-theme .main-menu ul li a {
+  color: #e0e0e0;
+}
+
+body.dark-theme .main-content {
+  box-shadow: 0 5px 15px -4px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .flbox img {
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+body.dark-theme .main-menu ul li a:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .main-aside .aside-wrap li {
+  background-color: #353b45;
+  border: 1px solid #5c6370;
+}
+
+body.dark-theme .article-body blockquote {
+  color: #abb2bf;
+}
+
+body.dark-theme .main-menu ul li:hover {
+  background: transparent;
+}
+
+body.dark-theme .blog a:hover {
+  background-color: #ff5c00;
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme .article-body a {
+  color: #61afef;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+body.dark-theme .article-body a.maxbutton,
+body.dark-theme .article-body a.maxbutton:visited {
+  color: #fff;
+}
+
+body.dark-theme .article-body a.maxbutton:hover,
+body.dark-theme .article-body a.maxbutton:focus {
+  color: #fff !important;
+}
+
+body.dark-theme .br-item-last {
+  color: #61afef;
+}
+
+body.dark-theme .br-item-last:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .read-more-item-header {
+  color: #61afef;
+}
+
+body.dark-theme .read-more-link:hover .read-more-item-header {
+  color: #ff5c00;
+}
+
+body.dark-theme .article-body a:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .pagination a,
+body.dark-theme .pagination span {
+  color: #e0e0e0;
+}
+
+body.dark-theme .pagination a:hover,
+body.dark-theme .pagination span:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .pagination-section .pagination-left,
+body.dark-theme .pagination-section .pagination-right {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme a.cat-list-item {
+  color: #abb2bf;
+  border-bottom: 1px solid #5c6370;
+}
+
+
+body.dark-theme .top-line,
+body.dark-theme .polit,
+body.dark-theme .main-footer,
+body.dark-theme .bottom-footer {
+  background-color: #21252b;
+}
+
+body.dark-theme .tag-link:hover {
+    background-color: #21252b;
+}
+
+body.dark-theme .category-header {
+    background-color: #282c34;
+    transition: background-color 0.3s;
+}
+
+body.dark-theme .site-map-block {
+    border-bottom: none;
+}
+
+body.dark-theme .categories-expo-posts {
+    border: none;
+}
+
+body.dark-theme #theme-toggle {
+    color: #e0e0e0;
+}
+
+body.dark-theme .site-map-block .post-title a {
+    color: #61afef;
+}
+
+body.dark-theme .site-map-block .post-title a:hover {
+    color: #ff5c00;
+}
+
+body.dark-theme .site-map-block .post-title h3 {
+    color: inherit;
+}
+
+
+body.dark-theme .article-body .ext-link,
+body.dark-theme .article-body .link,
+body.dark-theme .article-body .cloud-link {
+    border-bottom: 2px dotted #61afef;
+}
+
+
+body.dark-theme .article-body .ext-link:hover,
+body.dark-theme .article-body .link:hover,
+body.dark-theme .article-body .cloud-link:hover {
+    border-bottom-color: #ff5c00;
+}
+
+
+body.dark-theme.home-page .main-content {
+    background-color: #282c34;
+}
+
+body.dark-theme .theme-switcher-text {
+    color: #e0e0e0;
+}
+
+body.dark-theme .main-menu ul li.theme-switcher:hover .theme-switcher-text,
+body.dark-theme .main-menu ul li.theme-switcher:hover .sun-icon,
+body.dark-theme .main-menu ul li.theme-switcher:hover .moon-icon,
+body.dark-theme .footer-menu ul li.theme-switcher:hover .theme-switcher-text,
+body.dark-theme .footer-menu ul li.theme-switcher:hover .sun-icon,
+body.dark-theme .footer-menu ul li.theme-switcher:hover .moon-icon {
+    color: #ff5c00;
+    stroke: #ff5c00;
+}
+
+body.dark-theme .theme-switcher-wrapper svg {
+    color: #e0e0e0;
+    stroke: #e0e0e0;
+}

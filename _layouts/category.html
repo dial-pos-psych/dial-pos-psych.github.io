@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+{% assign category_posts = site.categories[page.category_slug] | sort: "date" | reverse %}
+{% assign category_image = page.image | default: "" | replace: site.url, "" %}
+
+<section>
+  <div class="cat-header"{% if category_image != "" %} style="background-image: url('{{ category_image }}')"{% endif %}>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="cat-header-block">
+          {% if page.icon_class %}<i class="{{ page.icon_class }}"></i>{% endif %}
+          <h1>{{ page.category_title | default: page.title }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid">
+  <div class="cat-list-first">
+    <div class="ad top-ad"></div>
+    <div class="type-one type-one-cat">
+      <div class="row">
+        <div class="col-md-6">
+          {% for post in category_posts limit: 1 %}
+          {% assign first_image = post.image | default: post.thumb | default: "" | replace: site.url, "" %}
+          <div class="type-one-first">
+            <a href="{{ post.url }}" title="{{ post.title }}">
+              {% if first_image != "" %}
+              <img src="{{ first_image }}" alt="{{ post.title }}" class="img-responsive img-width">
+              {% endif %}
+            </a>
+            <div class="item-social">
+              <div class="item-comments" title="Количество комментариев">
+                <span class="date">{{ post.date | date: "%d/%m/%Y" }}</span>
+                <i class="fa fa-comments"></i>
+                <a class="item-comments-count item-comments-count__black" href="{{ post.url }}#disqus_thread"></a>
+              </div>
+            </div>
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6 item-title-white">
+          {% for post in category_posts offset: 1 limit: 2 %}
+          {% assign title_image = post.thumb | default: post.image | default: "" | replace: site.url, "" %}
+          <div class="pattern">
+            <div class="overlay item-title"{% if title_image != "" %} style="background-image: url({{ title_image }})"{% endif %}>
+              <div class="item-title-content">
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <div class="item-social">
+                  <div class="item-comments" title="Количество комментариев">
+                    <span class="date">{{ post.date | date: "%d/%m/%Y" }}</span>
+                    <i class="fa fa-comments"></i>
+                    <a class="item-comments-count" href="{{ post.url }}#disqus_thread"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cat-list">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 col-lg-7 col-xl-8">
+        <div class="cat-list-wrap">
+          <div class="row">
+            <div class="col-md-12">
+              {% for post in category_posts offset: 3 %}
+              {% assign post_image = post.thumb | default: post.image | default: "" | replace: site.url, "" %}
+              <a href="{{ post.url }}" class="cat-list-item">
+                <div class="row">
+                  <div class="col-sm-6">
+                    {% if post_image != "" %}
+                    <div class="pattern">
+                      <img src="{{ post_image }}" alt="{{ post.title }}" class="img-responsive img-width overlay">
+                    </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-6">
+                    {% if post.category_title %}
+                    <h4 class="category-in-blog zag_gl">{{ post.category_title }}</h4>
+                    {% endif %}
+                    <h3 class="zag_gl">{{ post.title }}</h3>
+                    <div class="date">{{ post.date | date: "%d/%m/%Y" }}</div>
+                    {% if post.description %}
+                    <p>{{ post.description }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <section class="pagination-section pagination-section-first text-center d-md-none"></section>
+      </div>
+      <div class="col-md-6 col-lg-5 col-xl-4">
+        {% include sidebars/category.html %}
+      </div>
+    </div>
+    <section class="pagination-section text-center d-none d-md-block"></section>
+  </div>
+</div>

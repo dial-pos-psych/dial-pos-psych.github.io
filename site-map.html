@@ -1,0 +1,161 @@
+---
+layout: page
+title: "Карта сайта"
+description: "Карта сайта Диалектическая позитивная психология"
+permalink: "/site-map.html"
+page_header: "Карта сайта"
+page_icon: "icon-map"
+page_image: "/img/blue-bg.webp"
+---
+
+<style>
+  .categories-expo-section {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100vh;
+  }
+
+  .category-wrapper {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .category-header {
+    cursor: pointer;
+    position: relative;
+    padding: 10px 15px;
+    margin-bottom: 0;
+    background-color: #f8f9fa;
+    border-radius: 5px 5px 0 0;
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .category-header:hover,
+  .category-header.active {
+    background-color: #e9ecef;
+    box-shadow: inset 4px 0 0 #d86b1d;
+  }
+
+  .categories-expo-posts {
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.3s ease,
+      padding 0.3s ease,
+      transform 0.3s ease;
+    opacity: 0;
+    padding: 0 15px;
+    transform: translateY(-6px);
+    border: 1px solid #f0f0f0;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    background-color: transparent;
+    will-change: max-height, opacity, padding, transform;
+  }
+
+  .categories-expo-posts.open {
+    opacity: 1;
+    padding: 15px;
+    transform: translateY(0);
+  }
+
+  .site-map-block {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .site-map-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .categories-expo {
+    min-height: 200px;
+  }
+
+  .site-tag {
+    display: inline-block;
+    margin: 0 5px 8px 0;
+  }
+
+  .tag-link {
+    display: inline-block;
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    color: #133a65;
+  }
+
+  .tag-link:hover {
+    background-color: #e9ecef;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .category-header,
+    .categories-expo-posts,
+    .tag-link {
+      transition: none;
+    }
+  }
+</style>
+
+{% assign category_pairs = site.categories | sort %}
+
+<div class="categories-expo-list">
+  {% for category_pair in category_pairs %}
+  {% assign category_slug = category_pair[0] %}
+  {% assign category_posts = category_pair[1] | sort: "date" | reverse %}
+  {% assign first_post = category_posts | first %}
+  {% assign category_title = first_post.category_title | default: category_slug %}
+  {% assign category_anchor = "category-" | append: category_slug %}
+  <span class="site-tag">
+    <a class="post-categories tag-link" href="#{{ category_anchor }}" data-target="{{ category_anchor }}">
+      {{ category_title }} ({{ category_posts.size }})
+    </a>
+  </span>
+  {% endfor %}
+</div>
+
+<div class="categories-expo">
+  <div class="categories-expo-section">
+    {% for category_pair in category_pairs %}
+    {% assign category_slug = category_pair[0] %}
+    {% assign category_posts = category_pair[1] | sort: "date" | reverse %}
+    {% assign first_post = category_posts | first %}
+    {% assign category_title = first_post.category_title | default: category_slug %}
+    {% assign category_anchor = "category-" | append: category_slug %}
+    <div class="category-wrapper">
+      <h2 id="{{ category_anchor }}" class="category-header" tabindex="0">{{ category_title }}</h2>
+      <div class="categories-expo-posts">
+        {% for post in category_posts %}
+        <div class="site-map-block">
+          <span class="post-date">{{ post.date | date: "%Y/%m/%d" }}</span>
+          <a class="post-title" href="{{ post.url }}">
+            <h3>{{ post.title }}</h3>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="/js/site-map.js"></script>

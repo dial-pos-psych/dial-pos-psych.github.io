@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+{% include page-header.html %}
+
+<section class="container-fluid">
+  <div class="article-content">
+    <div class="row">
+      <div class="col-md-12">
+        <article class="main-article">
+          {% include page-breadcrumbs.html %}
+          <div class="article-body">
+            {{ content }}
+          </div>
+          {% if page.show_donate %}
+          {% include donate.html %}
+          {% endif %}
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

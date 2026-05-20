@@ -1,0 +1,24 @@
+<nav class="breadcrumbs">
+  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+    <li class="first-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+      <a class="br-item-1" href="/" itemprop="item">
+        <span itemprop="name">Главная</span>
+        <meta itemprop="position" content="0">
+      </a>
+    </li>
+    <i class="fa fa-chevron-right"></i>
+    <li class="second-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+      <a class="br-item-2" href="/blog/{{ page.category_slug }}/" itemprop="item">
+        <span itemprop="name">{{ page.category_title }}</span>
+        <meta itemprop="position" content="1">
+      </a>
+    </li>
+    <i class="fa fa-chevron-right"></i>
+    <li class="last-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+      <a class="br-item-last" href="{{ page.url }}" itemprop="item">
+        <span itemprop="name">{{ page.title }}</span>
+        <meta itemprop="position" content="2">
+      </a>
+    </li>
+  </ul>
+</nav>

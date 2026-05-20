@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="{{ page.lang | default: site.lang | default: 'ru' }}">
+<head>
+  {% include head.html %}
+</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  {% include header.html %}
+  <main class="main-content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% assign share_url = page.url | default: page.permalink %}
+{% assign share_image = page.image | default: "" %}
+<div class="{% if include.compact %}item-social{% else %}pluso-block{% endif %}">
+  {% if include.compact %}
+  <div class="item-comments" title="Количество комментариев">
+    <i class="fa fa-comments"></i>
+    <a href="#comments" class="item-comments-count"></a>
+  </div>
+  {% endif %}
+  {% unless include.compact %}<div class="likely-on-page">{% endunless %}
+  <div class="likely{% if include.compact %} likely-custom{% endif %}" data-url="{{ share_url }}" data-media="{{ share_image }}" data-title="{{ page.title }}">
+    {% if include.compact %}<i class="fa fa-share-alt" title="Поделиться в соц. сетях"></i>{% endif %}
+    <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+    <div class="telegram" title="Поделиться в Telegram">Telegram</div>
+    <div class="whatsapp" title="Поделиться в Whatsapp">Whatsapp</div>
+  </div>
+  {% unless include.compact %}</div>{% endunless %}
+</div>

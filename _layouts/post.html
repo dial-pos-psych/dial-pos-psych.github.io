@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+{% include post-header.html %}
+
+<section class="container-fluid">
+  <div class="article-content">
+    <div class="row">
+      <div class="col-md-7 col-lg-8">
+        <article itemscope itemtype="http://schema.org/Article" class="main-article">
+          {% include breadcrumbs.html %}
+          <div itemprop="articleBody" class="article-body" id="article">
+            <div class="ad article-top-ad"></div>
+            {% include post-schema.html %}
+            {{ content }}
+          </div>
+          {% include donate.html %}
+          {% include post-share.html %}
+          <div class="ad article-top-ad"></div>
+          {% include read-more.html %}
+          {% include comments.html %}
+        </article>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        {% include sidebars/post.html %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container-fluid button-up-block">
+  <a class="up-link" href="#">
+    <div class="up-img-block">
+      <img class="up-img" src="/img/up.png" alt="Кнопка вверх">
+    </div>
+  </a>
+</div>

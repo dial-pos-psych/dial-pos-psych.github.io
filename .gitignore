@@ -1,0 +1,76 @@
+﻿# Jekyll generated output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.jekyll-server.log
+.sass-cache/
+
+# Ruby / Bundler local dependencies
+.bundle/
+vendor/
+
+# Python local environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+
+# Incoming drafts and unpublished source materials
+content-inbox/*
+!content-inbox/README.md
+!content-inbox/post/
+content-inbox/post/*
+!content-inbox/post/README.md
+!content-inbox/post/images/
+content-inbox/post/images/*
+!content-inbox/post/images/README.md
+!content-inbox/category/
+content-inbox/category/*
+!content-inbox/category/README.md
+!content-inbox/category/images/
+content-inbox/category/images/*
+!content-inbox/category/images/README.md
+!content-inbox/page/
+content-inbox/page/*
+!content-inbox/page/README.md
+!content-inbox/page/images/
+content-inbox/page/images/*
+!content-inbox/page/images/README.md
+
+# Secrets and hosting-only access files
+.env
+.env.*
+!.env.example
+config.php
+**/.htpasswd
+id_rsa*
+id_ed25519*
+*.pem
+*.key
+*.p12
+*.pfx
+.well-known/acme-challenge/
+
+# Logs, dumps, temporary files and archives
+log/
+logs/
+*.log
+*.stackdump
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
+*.zip
+*.rar
+*.7z
+
+# MP4 files are intentionally versioned in this Pages workspace.
+# Check GitHub's 100 MB per-file limit before committing new videos.
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

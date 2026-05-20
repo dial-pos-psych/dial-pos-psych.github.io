@@ -1,0 +1,21 @@
+{% assign related_posts = site.categories[page.category_slug] | where_exp: "post", "post.url != page.url" | sort: "date" | reverse | slice: 0, 4 %}
+{% if related_posts.size > 0 %}
+<div class="read-more">
+  <h2 class="read-more-header">Читать еще:</h2>
+  <ul class="read-more-list">
+    {% for post in related_posts %}
+    {% assign related_image = post.thumb | default: post.image %}
+    <li class="read-more-item">
+      <a class="read-more-link" href="{{ post.url }}" target="_blank">
+        {% if related_image %}
+        <div class="box-img-animation">
+          <img alt="{{ post.title }}" class="img-responsive" src="{{ related_image }}">
+        </div>
+        {% endif %}
+        <h6 class="read-more-item-header">{{ post.title }}</h6>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

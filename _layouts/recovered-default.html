@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="{{ page.lang | default: site.lang | default: 'ru' }}">
+<head>
+  <meta charset="utf-8">
+  {% seo %}
+  {% include recovered/head-after-seo.html %}
+</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  {% include recovered/site-header.html %}
+  <main class="main-content">
+    {{ content }}
+  </main>
+  {% include recovered/site-footer-and-modals.html %}
+</body>
+</html>

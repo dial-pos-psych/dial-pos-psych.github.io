@@ -1,0 +1,17 @@
+{% assign schema_image = page.thumb | default: page.image %}
+<div class="hidden">
+  <h2 itemprop="headline">{{ page.title }}</h2>
+  {% if page.date %}
+  <time itemprop="datePublished" datetime="{{ page.date | date: '%Y-%m-%d' }}">
+    {{ page.date | date: "%Y-%m-%d" }}
+  </time>
+  <meta itemprop="dateModified" content="{{ page.date | date: '%Y-%m-%d' }}">
+  {% endif %}
+  {% if schema_image %}
+  <div itemscope itemtype="http://schema.org/ImageObject">
+    <img itemprop="image" src="{{ schema_image }}" alt="{{ page.image_alt | default: page.title }}">
+    {% if page.image_width %}<meta itemprop="width" content="{{ page.image_width }}">{% endif %}
+    {% if page.image_height %}<meta itemprop="height" content="{{ page.image_height }}">{% endif %}
+  </div>
+  {% endif %}
+</div>

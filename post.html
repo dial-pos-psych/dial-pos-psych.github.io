@@ -1,0 +1,167 @@
+{%  include /head-post.html %}
+{%  include /top-line__logo.html %}
+<header>
+    <div class="page-header overlay" style="background-image: url({{ page.image }})">
+        <div class="page-header-content">
+            <div class="row">
+                <div class="col-lg-7 col-md-8">
+                    <div class="page-header-meta">
+                        <a href="{{ site.category_dir }}/{{ page.categories }}" class="page-category-link">{{ page.catname }}</a>
+                        <span class="date">
+                            {{ page.date | date: '%d' }}/{{ page.date | date: '%m' }}/{{ page.date | date: '%Y' }}
+                        </span>
+                        <h1>{{ page.title }}</h1>
+                        <div class="item-social">
+                            <div class="item-comments" title="Количество комментариев"> <i class="fa fa-comments"></i>
+                                <a href="{{ page.url }}#disqus_thread" class="item-comments-count"></a>
+                            </div>
+                            <div class="likely likely-custom" data-url="{{ site.baseurl }}{{ page.url }}" data-media="{{ site.baseurl }}/{{ page.image }}" data-title="{{ page.title }}"> <i class="fa fa-share-alt" title="Поделиться в соц. сетях"></i>
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="telegram" title="Поделиться в Telegram">Telegram</div>
+                                <div class="whatsapp" title="Поделиться в Whatsapp">Whatsapp</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="container-fluid">
+    <div class="article-content">
+        <div class="row">
+            <div class="col-md-7 col-lg-8">
+                <article itemscope itemtype="http://schema.org/Article" class="main-article">
+
+                    <nav class="breadcrumbs">
+                        <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+                            <li class="first-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                <a class="br-item-1" href="{{ site.baseurl }}" itemprop="item">
+                                    <span  itemprop="name">Главная</span>
+                                    <meta itemprop="position" content="0"></a>
+                            </li>
+                            <i class="fa fa-chevron-right"></i>
+                            <li class="second-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                <a class="br-item-2" href="{{ site.category_dir }}/{{ page.categories }}" itemprop="item">
+                                    <span itemprop="name">{{ page.catname }}</span>
+                                    <meta itemprop="position" content="1"></a>
+                            </li>
+                            <i class="fa fa-chevron-right"></i>
+                            <li class="last-breadcrumbs" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                <a class="br-item-last" href="{{ page.url }}" itemprop="item">
+                                    <span itemprop="name">{{ page.title }}</span>
+                                    <meta itemprop="position" content="2"></a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div itemprop="articleBody" class="article-body" id="article">
+                        <div class="ad article-top-ad">{% include /ad-type-1.html %}</div>
+                        <div class="hidden">
+                            <h2 itemprop="headline">{{ page.title }}</h2>
+                            <time itemprop="datePublished" datetime="{{ page.date | date: '%Y' }}-{{ page.date | date: '%m' }}-{{ page.date | date: '%d' }}">
+                                {{ page.date | date: '%Y' }}-{{ page.date | date: '%m' }}-{{ page.date | date: '%d' }}
+                            </time>
+                            <meta itemprop="dateModified" content="{{ page.date | date: '%Y' }}-{{ page.date | date: '%m' }}-{{ page.date | date: '%d' }}">
+                            <div itemscope itemtype="http://schema.org/ImageObject">
+                                <img itemprop="image" src="{{ site.baseurl }}/{{ page.thumb }}" alt="{{ page.catname }}">
+                                <meta itemprop="width" content="427">
+                                <meta itemprop="height" content="240"></div>
+                        </div>
+                        {{ content }}
+                    </div>
+                    <div class="hidden">
+                        <div>
+                            <span itemprop="author">{{ site.name }}</span>
+                        </div>
+                        <link itemprop="mainEntityOfPage" itemscope href="{{ page.url }}">
+                        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                            <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                <img itemprop="url image" src="{{ site.logo }}" alt="{{ site.title }}">
+                                <meta itemprop="width" content="150">
+                                <meta itemprop="height" content="150"></div>
+                            <meta itemprop="name" content="{{ site.title }}">
+                            <meta itemprop="telephone" content="{{ site.telephone }}">
+                            <meta itemprop="address" content="{{ site.address }}"></div>
+                        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                            <img alt="{{ page.title }}" itemprop="image url" src="{{ page.thumb }}">
+                            <meta itemprop="width" content="160">
+                            <meta itemprop="height" content="160"></div>
+                    </div>
+
+
+    <strong><p class="margin__top20">Если Вы считаете, что мой труд достоин благодарности, имеете право поддержать меня материально любой суммой.</p></strong>
+
+<!-- Донат -->
+<h3 class="center-zag kartapsb"><strong>Kартa ПСБ: </strong><span class="redd">2200 0305 1479 1178</span></h3>
+<!-- <h3 class="center-zag"><span class="redd">СБП</span></h3> -->
+<p class="small">(наведите камеру или нажмите на qr-код)</p>
+<div class="flbox"><a href="https://pay.cloudtips.ru/p/98403d6a" target="_blank"><img src="{{ site.baseurl }}/img/qr-code-donat-400x300.png" alt="qr-code-donat" title="qr-code-donat" /></a></div>
+
+
+                    <!-- Поделиться в социальных сетях likely -->
+                    <div class="pluso-block">
+                        <div class="likely-on-page">
+                            <div class="likely" data-url="{{ site.baseurl }}{{ page.url }}" data-media="{{ page.image }}" data-title="{{ page.title }}">
+                                <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
+                                <div class="telegram" title="Поделиться в Telegram">Telegram</div>
+                                <div class="whatsapp" title="Поделиться в Whatsapp">Whatsapp</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ad article-top-ad">{% include /ad-type-1.html %}</div>
+
+                    <div class="read-more">
+                        <h2 class="read-more-header">Читать еще:</h2>
+                        <ul class="read-more-list">
+                            {% capture related_posts %}{{ page.categories }}{% endcapture %}
+                            {% assign collection = site.categories[related_posts] %}
+                            {% for article in collection limit: 4 %}
+                            {% unless page.url == article.url %}
+                            <li class="read-more-item">
+                                <a class="read-more-link" href="{{ article.url }}" target="_blank">
+                                    <div class="box-img-animation">
+                                        <img alt="{{ article.title }}" class="img-responsive" src={{ article.thumb }}></div>
+                                    <h6 class="read-more-item-header">{{ article.title }}</h6>
+                                </a>
+                            </li>
+                            {% endunless %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+
+                    <div class="comments">{% include /comments.html %}</div>
+                </article>
+            </div>
+            <div class="col-md-5 col-lg-4">
+                <aside itemscope itemtype="http://schema.org/WPSideBar" class="main-aside aside1">
+                    <div class="ad aside-box">{% include /ad-type-3.html %}</div>
+                    <div class="aside-box">
+                         {% include /aside-vk-witget.html %}
+                        <!-- {% include /aside-my-courses.html %} -->
+                         {% include /aside-my-courses-free.html %}
+                          {% include /aside-courses-pp.html %}
+                          {% include /aside-perma.html %}
+                          {% include /aside-category-block.html %}
+                             {% include /aside-block-dev.html %}
+
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid button-up-block">
+    <a class="up-link" href="{{ page.url }}#up">
+        <div class="up-img-block">
+            <img class="up-img" src="{{ site.baseurl }}/img/up.png" alt="Кнопка вверх"></div>
+    </a>
+</div>
+{%  include /footer.html %}
+{% if page.schema %}
+<script type="application/ld+json">
+{{ page.schema | jsonify }}
+</script>
+{% endif %}
+

@@ -1,0 +1,48 @@
+.article-body .image-caption {
+  margin: -8px 0 24px;
+  text-align: center !important;
+  font-size: 15px !important;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #5f6670;
+}
+
+.article-body .image-caption-label {
+  color: #ff5c00;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.article-body .plan-list ul {
+  margin: 6px 0 4px 18px;
+  padding-left: 16px;
+}
+
+.article-body .plan-list ul li {
+  margin: 3px 0;
+}
+
+body.dark-theme .article-body .image-caption {
+  color: #abb2bf;
+}
+
+body.dark-theme .article-body .image-caption-label {
+  color: #ff7a2f;
+}
+
+body.dark-theme .article-body a.maxbutton,
+body.dark-theme .article-body a.maxbutton:visited {
+  color: #fff;
+}
+
+body.dark-theme .article-body a.maxbutton:hover,
+body.dark-theme .article-body a.maxbutton:focus {
+  color: #fff !important;
+}
+
+@media (max-width: 575.98px) {
+  .article-body .image-caption {
+    font-size: 14px !important;
+    line-height: 1.4;
+  }
+}
