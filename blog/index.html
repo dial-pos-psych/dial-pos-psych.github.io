@@ -23,6 +23,28 @@ source_kind: "blog-index"
 </div>
 
 {% assign latest_posts = site.posts | sort: "date" | reverse %}
+{% assign blog_posts_per_page = 9 %}
+{% assign blog_total_posts = latest_posts | size %}
+{% assign blog_total_pages = blog_total_posts | divided_by: blog_posts_per_page %}
+{% assign blog_remainder = blog_total_posts | modulo: blog_posts_per_page %}
+{% if blog_remainder > 0 %}
+  {% assign blog_total_pages = blog_total_pages | plus: 1 %}
+{% endif %}
+{% capture blog_first_page_pagination %}
+{% if blog_total_pages > 1 %}
+<a href="/blog/page2/" class="button">Следующая страница <i class="fa fa-angle-double-right"></i></a>
+<div class="pagination">
+  <span class="pagination-left" title="Предыдущая страница">&laquo;</span>
+  <span class="active">1</span>
+  {% for page_num in (2..5) %}
+  {% if page_num <= blog_total_pages %}
+  <a href="/blog/page{{ page_num }}/" title="{{ page.title }} Страница {{ page_num }}">{{ page_num }}</a>
+  {% endif %}
+  {% endfor %}
+  <a href="/blog/page2/" class="pagination-right" title="Следующая страница">&raquo;</a>
+</div>
+{% endif %}
+{% endcapture %}
 <div class="cat-list">
   <div class="container-fluid">
     <div class="ad top-ad"></div>
@@ -30,7 +52,7 @@ source_kind: "blog-index"
       <div class="col-md-8">
         <div class="all-posts-header">Все материалы сайта</div>
         <div class="cat-list-wrap">
-          {% for post in latest_posts limit: 12 %}
+          {% for post in latest_posts limit: blog_posts_per_page %}
           {% assign post_image = post.thumb | default: post.image | default: "" | replace: site.url, "" %}
           <a href="{{ post.url }}" class="cat-list-item">
             <div class="row">
@@ -55,10 +77,12 @@ source_kind: "blog-index"
           </a>
           {% endfor %}
         </div>
+        <section class="pagination-section pagination-section-first text-center d-md-none">{{ blog_first_page_pagination }}</section>
       </div>
       <div class="col-md-4">
         {% include sidebars/blog-index.html %}
       </div>
     </div>
+    <section class="pagination-section text-center d-none d-md-block">{{ blog_first_page_pagination }}</section>
   </div>
 </div>
