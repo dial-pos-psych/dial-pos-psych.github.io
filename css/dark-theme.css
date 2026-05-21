@@ -315,12 +315,13 @@ body.dark-theme .theme-switcher .theme-switcher-wrapper:before {
 
 body.dark-theme .theme-switcher .theme-switcher-wrapper:after {
     transform: translate(24px, -50%);
-    background: #ff5c00;
+    background: #ffc700;
 }
 
 body.dark-theme .theme-switcher .theme-switcher-wrapper .sun-icon {
-    color: #ffc700;
-    stroke: #ffc700;
+    display: block !important;
+    color: #fff !important;
+    stroke: #fff !important;
 }
 
 body.dark-theme .theme-switcher .theme-switcher-wrapper .moon-icon {
@@ -338,5 +339,13 @@ body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .theme-swi
 
 body.dark-theme .theme-switcher .theme-switcher-wrapper:hover:before,
 body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible:before {
-    border-color: #ff5c00;
+    border-color: #ffc700;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper:hover .sun-icon,
+body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .sun-icon,
+body.dark-theme .theme-switcher .theme-switcher-wrapper:hover .moon-icon,
+body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .moon-icon {
+    color: #fff !important;
+    stroke: #fff !important;
 }
