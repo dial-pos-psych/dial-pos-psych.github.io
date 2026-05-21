@@ -68,6 +68,9 @@ temp/
 # MP4 files are intentionally versioned in this Pages workspace.
 # Check GitHub's 100 MB per-file limit before committing new videos.
 
+# Legacy local Camtasia player assets replaced by remote video iframes.
+free-courses-mine/
+
 # OS and editor noise
 .DS_Store
 Thumbs.db
