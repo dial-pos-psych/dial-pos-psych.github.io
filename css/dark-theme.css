@@ -309,7 +309,7 @@ body.dark-theme .theme-switcher-wrapper svg {
 
 /* DPP theme switcher */
 body.dark-theme .theme-switcher .theme-switcher-wrapper:before {
-    border-color: #ff5c00;
+    border-color: #fff;
     background: #001438;
 }
 
@@ -324,8 +324,7 @@ body.dark-theme .theme-switcher .theme-switcher-wrapper .sun-icon {
 }
 
 body.dark-theme .theme-switcher .theme-switcher-wrapper .moon-icon {
-    color: #fff;
-    stroke: #fff;
+    display: none !important;
 }
 
 body.dark-theme .theme-switcher .theme-switcher-text {
@@ -335,4 +334,9 @@ body.dark-theme .theme-switcher .theme-switcher-text {
 body.dark-theme .theme-switcher .theme-switcher-wrapper:hover .theme-switcher-text,
 body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .theme-switcher-text {
     color: #ff5c00;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper:hover:before,
+body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible:before {
+    border-color: #ff5c00;
 }
