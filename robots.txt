@@ -2,7 +2,6 @@
 User-agent: *
 Allow: /
 Disallow: /404.html
-Disallow: /blog/ker-wp
 Disallow: /blog/ker
 Disallow: /blog/map
 Disallow: /search

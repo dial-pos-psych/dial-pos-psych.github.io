@@ -65,11 +65,12 @@ temp/
 *.rar
 *.7z
 
-# MP4 files are intentionally versioned in this Pages workspace.
-# Check GitHub's 100 MB per-file limit before committing new videos.
+# MP4 files should not be added to the main site unless explicitly needed.
+# Prefer remote video iframes or a separate hosting folder.
 
 # Legacy local Camtasia player assets replaced by remote video iframes.
 free-courses-mine/
+ker-wp/
 
 # OS and editor noise
 .DS_Store

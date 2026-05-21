@@ -35,6 +35,7 @@ exclude:
   - github-pages-site
   - ker-course-free
   - ker-gp
+  - ker-wp
   - log
   - php
   - tmp
