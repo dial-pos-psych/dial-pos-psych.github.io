@@ -306,3 +306,33 @@ body.dark-theme .theme-switcher-wrapper svg {
     color: #e0e0e0;
     stroke: #e0e0e0;
 }
+
+/* DPP theme switcher */
+body.dark-theme .theme-switcher .theme-switcher-wrapper:before {
+    border-color: #ff5c00;
+    background: #001438;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper:after {
+    transform: translate(24px, -50%);
+    background: #ff5c00;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper .sun-icon {
+    color: #ffc700;
+    stroke: #ffc700;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper .moon-icon {
+    color: #fff;
+    stroke: #fff;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-text {
+    color: #e0e0e0;
+}
+
+body.dark-theme .theme-switcher .theme-switcher-wrapper:hover .theme-switcher-text,
+body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .theme-switcher-text {
+    color: #ff5c00;
+}
