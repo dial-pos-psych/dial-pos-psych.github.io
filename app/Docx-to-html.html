@@ -305,7 +305,7 @@
             return html.replace(/<a href="([^"]*)">(.*?)<\/a>/gi, (match, url, text) => {
                 if (url.includes("disk.yandex.ru")) {
                     return `<a class="cloud-link" href="${url}" target="_blank">${text}</a>`;
-                } else if (url.includes("https://dial-pos-psych.ru")) {
+                } else if (url.includes("https://dial-pos-psych.github.io")) {
                      return `<a class="link" href="${url}" target="_blank">${text}</a>`;
                 } else {
                     return `<a class="ext-link" target="_blank" rel="noopener" href="${url}">${text}</a>`;

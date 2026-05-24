@@ -15,10 +15,10 @@ Allow: /rss.xml
 Crawl-delay: 10
 
 # Host preference
-Host: dial-pos-psych.ru
+Host: dial-pos-psych.github.io
 
 # Sitemaps
-Sitemap: https://dial-pos-psych.ru/sitemap.xml
+Sitemap: https://dial-pos-psych.github.io/sitemap.xml
 
 # Clean parameters
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
