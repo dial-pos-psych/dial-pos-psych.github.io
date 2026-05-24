@@ -3,6 +3,8 @@ description: "Об искусстве жить, опираясь на матер
 url: "https://dial-pos-psych.ru"
 baseurl: ""
 lang: ru
+yandex_metrika_id: 109387183
+yandex_metrika_variant: pages
 timezone: Europe/Moscow
 encoding: utf-8
 destination: _site

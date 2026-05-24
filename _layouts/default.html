@@ -4,6 +4,7 @@
   {% include head.html %}
 </head>
 <body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  {% include yandex-metrika.html %}
   {% include header.html %}
   <main class="main-content">
     {{ content }}
