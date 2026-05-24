@@ -80,23 +80,112 @@ page_image: "/img/blue-bg.webp"
     min-height: 200px;
   }
 
+  .categories-expo-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin: 0 0 28px;
+    padding: 16px 18px;
+    border: 1px solid #d6dde6;
+    border-left: 4px solid #ff5c00;
+    border-radius: 6px;
+    background-color: #f8fafc;
+  }
+
   .site-tag {
-    display: inline-block;
-    margin: 0 5px 8px 0;
+    display: inline-flex;
+    margin: 0;
+    line-height: 1;
   }
 
   .tag-link {
-    display: inline-block;
-    padding: 5px;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    min-height: 34px;
+    padding: 7px 10px;
+    border: 1px solid rgba(19, 58, 101, 0.18);
+    background-color: #fff;
     text-decoration: none;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+    border-radius: 4px;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s,
+      color 0.2s,
+      transform 0.2s;
     cursor: pointer;
     color: #133a65;
+    font-weight: 700;
+    line-height: 1.15;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
-  .tag-link:hover {
-    background-color: #e9ecef;
+  .tag-link:hover,
+  .tag-link:focus {
+    background-color: #001438;
+    border-color: #ff5c00;
+    box-shadow: 0 3px 10px rgba(0, 20, 56, 0.14);
+    color: #fff;
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .tag-link__count {
+    color: #ff5c00;
+    font-size: 0.78em;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .tag-link:hover .tag-link__count,
+  .tag-link:focus .tag-link__count {
+    color: #ffc700;
+  }
+
+  .tag-link--s {
+    font-size: 0.92rem;
+  }
+
+  .tag-link--m {
+    font-size: 1.05rem;
+  }
+
+  .tag-link--l {
+    font-size: 1.2rem;
+  }
+
+  .tag-link--xl {
+    font-size: 1.38rem;
+  }
+
+  .tag-link--xxl {
+    font-size: 1.58rem;
+  }
+
+  body.dark-theme .categories-expo-list {
+    background-color: #282c34;
+    border-color: #5c6370;
+    border-left-color: #ff5c00;
+  }
+
+  body.dark-theme .tag-link {
+    background-color: #353b45;
+    border-color: #5c6370;
+    color: #61afef;
+  }
+
+  body.dark-theme .tag-link:hover,
+  body.dark-theme .tag-link:focus {
+    background-color: #21252b;
+    border-color: #ff5c00;
+    color: #ff5c00;
+  }
+
+  body.dark-theme .tag-link__count {
+    color: #ffc700;
   }
 
   html {
@@ -114,9 +203,31 @@ page_image: "/img/blue-bg.webp"
       transition: none;
     }
   }
+
+  @media (max-width: 575.98px) {
+    .categories-expo-list {
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .tag-link--xl {
+      font-size: 1.25rem;
+    }
+
+    .tag-link--xxl {
+      font-size: 1.38rem;
+    }
+  }
 </style>
 
 {% assign category_pairs = site.categories | sort %}
+{% assign max_category_posts = 1 %}
+{% for category_pair in category_pairs %}
+  {% assign category_posts_for_weight = category_pair[1] %}
+  {% if category_posts_for_weight.size > max_category_posts %}
+    {% assign max_category_posts = category_posts_for_weight.size %}
+  {% endif %}
+{% endfor %}
 
 <div class="categories-expo-list">
   {% for category_pair in category_pairs %}
@@ -125,9 +236,21 @@ page_image: "/img/blue-bg.webp"
   {% assign first_post = category_posts | first %}
   {% assign category_title = first_post.category_title | default: category_slug %}
   {% assign category_anchor = "category-" | append: category_slug %}
+  {% assign tag_weight = category_posts.size | times: 100 | divided_by: max_category_posts %}
+  {% assign tag_size_class = "tag-link--s" %}
+  {% if tag_weight >= 80 %}
+    {% assign tag_size_class = "tag-link--xxl" %}
+  {% elsif tag_weight >= 55 %}
+    {% assign tag_size_class = "tag-link--xl" %}
+  {% elsif tag_weight >= 32 %}
+    {% assign tag_size_class = "tag-link--l" %}
+  {% elsif tag_weight >= 16 %}
+    {% assign tag_size_class = "tag-link--m" %}
+  {% endif %}
   <span class="site-tag">
-    <a class="post-categories tag-link" href="#{{ category_anchor }}" data-target="{{ category_anchor }}">
-      {{ category_title }} ({{ category_posts.size }})
+    <a class="post-categories tag-link {{ tag_size_class }}" href="#{{ category_anchor }}" data-target="{{ category_anchor }}" data-count="{{ category_posts.size }}" aria-label="{{ category_title | escape }}: {{ category_posts.size }} записей">
+      <span class="tag-link__title">{{ category_title }}</span>
+      <span class="tag-link__count">{{ category_posts.size }}</span>
     </a>
   </span>
   {% endfor %}
