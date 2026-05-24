@@ -1,5 +1,5 @@
-title: "Диалектическая позитивная психология"
-description: "Об искусстве жить, опираясь на материалистическую диалектику и позитивную психологию"
+title: "Диалектическая психология благополучия"
+description: "Психология благополучия через критическое мышление и материалистическую диалектику"
 url: "https://dial-pos-psych.github.io"
 baseurl: ""
 lang: ru
@@ -25,31 +25,12 @@ exclude:
   - .bundle
   - .jekyll-cache
   - .jekyll-server.log
-  - bash.exe.stackdump
   - .gitignore
   - .ruby-version
-  - .well-known/acme-challenge
-  - admin
-  - auth
-  - config.php
-  - content-inbox
-  - free-courses-mine
-  - github-pages-site
-  - ker-course-free
-  - ker-gp
-  - ker-wp
-  - log
-  - php
-  - tmp
-  - tools
   - vendor
   - Gemfile
   - Gemfile.lock
   - README.md
-  - README-GITHUB-PAGES.md
-  - DEVELOPER.md
-  - CONTENT_WORKFLOW.md
-  - recovery-report.json
 
 collections:
   posts:
