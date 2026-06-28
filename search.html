@@ -11,12 +11,7 @@ show_donate: false
 
 <h2>Поиск по сайту</h2>
 <p>
-  Форма отправляет запрос во внешний поиск Яндекса. Переход произойдет только после нажатия кнопки «Найти».
+  Введите запрос в поле поиска в шапке сайта. Результаты появятся на этой странице.
 </p>
-<form action="https://yandex.ru/search/site/" method="get" target="_blank" accept-charset="utf-8" class="site-search-form">
-  <input type="hidden" name="searchid" value="15151105">
-  <input type="hidden" name="l10n" value="ru">
-  <input type="hidden" name="reqenc" value="">
-  <input type="search" name="text" value="" placeholder="Поиск по сайту" required>
-  <input type="submit" value="Найти">
-</form>
+
+<div id="ya-site-results" data-bem="{&quot;tld&quot;: &quot;ru&quot;,&quot;language&quot;: &quot;ru&quot;,&quot;encoding&quot;: &quot;&quot;,&quot;htmlcss&quot;: &quot;1.x&quot;,&quot;updatehash&quot;: true}"></div><script type="text/javascript">(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0];s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Results.init();})})(window,document,'yandex_site_callbacks');</script>
