@@ -1,0 +1,95 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Логотип сайта Диалектическая психология благополучия" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Логотип сайта Диалектическая психология благополучия" [ref=e5]
+      - generic "Поиск по сайту..." [ref=e6] [cursor=pointer]:
+        - generic [ref=e7]: 
+      - text: 
+      - navigation [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "ਈ Все записи" [ref=e11] [cursor=pointer]:
+              - /url: /blog/
+          - listitem [ref=e12]:
+            - link "਒ Миссия сайта" [ref=e13] [cursor=pointer]:
+              - /url: /about-site.html
+          - listitem [ref=e14]:
+            - link "ਆ Обо мне" [ref=e15] [cursor=pointer]:
+              - /url: /about-me.html
+          - listitem [ref=e16]:
+            - link "ਓ Карта сайта" [ref=e17] [cursor=pointer]:
+              - /url: /site-map.html
+          - listitem [ref=e18]:
+            - link "ਇ Ресурсы и соцсети" [ref=e19] [cursor=pointer]:
+              - /url: "#my-contacts"
+          - listitem [ref=e20]:
+            - button "Включить темную тему" [ref=e21] [cursor=pointer]:
+              - img
+    - text: ਈ ਒ ਆ ਓ ਇ
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - link [ref=e25] [cursor=pointer]:
+        - /url: /about-site.html
+      - generic [ref=e27]:
+        - link "Диалектическая" [ref=e28] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "Диалектическая" [level=1] [ref=e29]
+        - link "психология благополучия" [ref=e30] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "психология благополучия" [level=1] [ref=e31]
+  - generic [ref=e33]:
+    - link "Отказ от ответственности" [ref=e34] [cursor=pointer]:
+      - /url: /otkaz-ot-otvetstvennosti.html
+    - link "ਤ Политика обработки персональных данных" [ref=e35] [cursor=pointer]:
+      - /url: /politika-konfidentcialnosti.html
+      - generic [ref=e36]: ਤ
+      - text: Политика обработки персональных данных
+    - link "ਤ Согласие на обработку персональных данных" [ref=e37] [cursor=pointer]:
+      - /url: /soglasie-na-obrabotku-personalnyh-dannyh.html
+      - generic [ref=e38]: ਤ
+      - text: Согласие на обработку персональных данных
+    - link "ਤ О сайте" [ref=e39] [cursor=pointer]:
+      - /url: /kontakty.html
+      - generic [ref=e40]: ਤ
+      - text: О сайте
+    - button "ਤ Настройки cookies" [ref=e41] [cursor=pointer]:
+      - generic [ref=e42]: ਤ
+      - text: Настройки cookies
+  - contentinfo [ref=e43]:
+    - navigation [ref=e46]:
+      - list [ref=e47]:
+        - listitem [ref=e48]:
+          - link "ਈ Все записи" [ref=e49] [cursor=pointer]:
+            - /url: /blog/
+        - listitem [ref=e50]:
+          - link "਒ Миссия сайта" [ref=e51] [cursor=pointer]:
+            - /url: /about-site.html
+        - listitem [ref=e52]:
+          - link "ਆ Обо мне" [ref=e53] [cursor=pointer]:
+            - /url: /about-me.html
+        - listitem [ref=e54]:
+          - link "ਓ Карта сайта" [ref=e55] [cursor=pointer]:
+            - /url: /site-map.html
+        - listitem [ref=e56]:
+          - link "ਇ Ресурсы и соцсети" [ref=e57] [cursor=pointer]:
+            - /url: "#my-contacts"
+        - listitem [ref=e58]:
+          - button "Включить темную тему" [ref=e59] [cursor=pointer]:
+            - img
+  - contentinfo [ref=e60]:
+    - generic [ref=e62]:
+      - generic [ref=e63]: 2026 © Диалектическая психология благополучия
+      - paragraph
+  - generic [ref=e64]:
+    - generic [ref=e65]:
+      - strong [ref=e66]: Cookies и сторонние сервисы
+      - paragraph [ref=e67]:
+        - text: "Сайт использует технические cookies для работы интерфейса. Яндекс.Метрика, виджеты сторонних площадок и сервис комментариев Disqus загружаются только после вашего согласия. Подробнее:"
+        - link "Политика обработки персональных данных" [ref=e68] [cursor=pointer]:
+          - /url: /politika-konfidentcialnosti.html
+        - text: .
+    - generic [ref=e69]:
+      - button "Принять" [ref=e70] [cursor=pointer]
+      - button "Отклонить" [ref=e71] [cursor=pointer]

@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Логотип сайта Диалектическая психология благополучия" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Логотип сайта Диалектическая психология благополучия" [ref=e5]
+      - generic "Поиск по сайту..." [ref=e7] [cursor=pointer]:
+        - generic [ref=e8]: 
+      - generic [ref=e9] [cursor=pointer]:
+        - generic [ref=e10]: 
+        - text: Меню
+      - listitem [ref=e11]:
+        - button "Включить темную тему" [ref=e12] [cursor=pointer]:
+          - img [ref=e13]
+      - listitem [ref=e19]:
+        - button "Включить темную тему" [ref=e20] [cursor=pointer]:
+          - img [ref=e21]
+      - text: ਈ ਒ ਆ ਓ ਇ
+    - text: ਈ ਒ ਆ ਓ ਇ
+  - main [ref=e27]:
+    - generic [ref=e29]:
+      - link [ref=e30] [cursor=pointer]:
+        - /url: /about-site.html
+      - generic [ref=e32]:
+        - link "Диалектическая" [ref=e33] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "Диалектическая" [level=1] [ref=e34]
+        - link "психология благополучия" [ref=e35] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "психология благополучия" [level=1] [ref=e36]
+  - generic [ref=e38]:
+    - link "Отказ от ответственности" [ref=e39] [cursor=pointer]:
+      - /url: /otkaz-ot-otvetstvennosti.html
+    - link "Политика обработки персональных данных" [ref=e40] [cursor=pointer]:
+      - /url: /politika-konfidentcialnosti.html
+      - text: ਤ Политика обработки персональных данных
+    - link "Согласие на обработку персональных данных" [ref=e41] [cursor=pointer]:
+      - /url: /soglasie-na-obrabotku-personalnyh-dannyh.html
+      - text: ਤ Согласие на обработку персональных данных
+    - link "О сайте" [ref=e42] [cursor=pointer]:
+      - /url: /kontakty.html
+      - text: ਤ О сайте
+    - button "Настройки cookies" [ref=e43] [cursor=pointer]: ਤ Настройки cookies
+  - contentinfo [ref=e44]:
+    - generic [ref=e45]:
+      - generic: ਈ ਒ ਆ ਓ ਇ
+  - contentinfo [ref=e46]:
+    - generic [ref=e48]:
+      - generic [ref=e49]: 2026 © Диалектическая психология благополучия
+      - paragraph
+  - generic [ref=e50]:
+    - generic [ref=e51]:
+      - strong [ref=e52]: Cookies и сторонние сервисы
+      - paragraph [ref=e53]:
+        - text: "Сайт использует технические cookies для работы интерфейса. Яндекс.Метрика, виджеты сторонних площадок и сервис комментариев Disqus загружаются только после вашего согласия. Подробнее:"
+        - link "Политика обработки персональных данных" [ref=e54] [cursor=pointer]:
+          - /url: /politika-konfidentcialnosti.html
+        - text: .
+    - generic [ref=e55]:
+      - button "Принять" [ref=e56] [cursor=pointer]
+      - button "Отклонить" [ref=e57] [cursor=pointer]

@@ -1,5 +1,10 @@
 {% assign metrika_id = page.yandex_metrika_id | default: site.yandex_metrika_id %}
 {% assign metrika_variant = page.yandex_metrika_variant | default: site.yandex_metrika_variant | default: "main" %}
 {% unless page.yandex_metrika == false or site.yandex_metrika_enabled == false or metrika_id == nil or metrika_id == "" %}
-<script>window.dppMetrika = { id: 93833833, variant: "main" };</script>
+<script>
+  window.dppMetrika = {
+    id: {{ metrika_id | jsonify }},
+    variant: {{ metrika_variant | jsonify }}
+  };
+</script>
 {% endunless %}

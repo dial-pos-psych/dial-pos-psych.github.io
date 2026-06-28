@@ -1,7 +1,10 @@
 <div class="polit" id="foot">
   <div class="polit-block">
     <a href="/otkaz-ot-otvetstvennosti.html">Отказ от ответственности</a>
-    <a href="/politika-konfidentcialnosti.html"><i class="icon-marker"></i> Политика конфиденциальности</a>
+    <a href="/politika-konfidentcialnosti.html"><i class="icon-marker"></i> Политика обработки персональных данных</a>
+    <a href="/soglasie-na-obrabotku-personalnyh-dannyh.html"><i class="icon-marker"></i> Согласие на обработку персональных данных</a>
+    <a href="/kontakty.html"><i class="icon-marker"></i> О сайте</a>
+    <button type="button" class="privacy-settings-link" data-open-cookie-settings><i class="icon-marker"></i> Настройки cookies</button>
   </div>
 </div>
 <footer>
@@ -30,7 +33,7 @@
   <div itemscope itemtype="http://schema.org/WPFooter" class="bottom-footer">
     <div class="container text-center">
       <div class="copy-block">{{ "now" | date: "%Y" }} © Диалектическая психология благополучия</div>
-      <p></p>
+      <p>Информационно-образовательный проект. Материалы сайта не заменяют очную помощь специалиста.</p>
     </div>
   </div>
 </footer>
@@ -60,4 +63,6 @@
     <button class="image-zoom-btn" id="zoomOut">-</button>
   </div>
 </div>
+{% include cookie-consent.html %}
 <script src="/js/scripts.min.js"></script>
+<script src="/js/legal-consent.js"></script>

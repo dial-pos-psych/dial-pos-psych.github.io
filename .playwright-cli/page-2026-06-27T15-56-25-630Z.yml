@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Логотип сайта Диалектическая психология благополучия" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Логотип сайта Диалектическая психология благополучия" [ref=e5]
+      - generic "Поиск по сайту..." [ref=e6] [cursor=pointer]:
+        - generic [ref=e7]: 
+      - generic [ref=e8] [cursor=pointer]:
+        - generic [ref=e9]: 
+        - text: Меню
+      - text: ਈ ਒ ਆ ਓ ਇ
+      - button "Переключить тему" [ref=e10] [cursor=pointer]:
+        - generic [ref=e11]: 
+        - text: 
+    - text: ਈ ਒ ਆ ਓ ਇ
+  - main [ref=e12]:
+    - generic [ref=e14]:
+      - link [ref=e15] [cursor=pointer]:
+        - /url: /about-site.html
+      - generic [ref=e17]:
+        - link "Диалектическая" [ref=e18] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "Диалектическая" [level=1] [ref=e19]
+        - link "психология благополучия" [ref=e20] [cursor=pointer]:
+          - /url: /about-site.html
+          - heading "психология благополучия" [level=1] [ref=e21]
+  - generic [ref=e23]:
+    - link "Отказ от ответственности" [ref=e24] [cursor=pointer]:
+      - /url: /otkaz-ot-otvetstvennosti.html
+    - link "Политика обработки персональных данных" [ref=e25] [cursor=pointer]:
+      - /url: /politika-konfidentcialnosti.html
+      - text: ਤ Политика обработки персональных данных
+    - link "Согласие на обработку персональных данных" [ref=e26] [cursor=pointer]:
+      - /url: /soglasie-na-obrabotku-personalnyh-dannyh.html
+      - text: ਤ Согласие на обработку персональных данных
+    - link "О сайте" [ref=e27] [cursor=pointer]:
+      - /url: /kontakty.html
+      - text: ਤ О сайте
+    - button "Настройки cookies" [ref=e28] [cursor=pointer]: ਤ Настройки cookies
+  - contentinfo [ref=e29]:
+    - generic [ref=e30]:
+      - generic: ਈ ਒ ਆ ਓ ਇ
+  - contentinfo [ref=e31]:
+    - generic [ref=e33]:
+      - generic [ref=e34]: 2026 © Диалектическая психология благополучия
+      - paragraph
+  - generic [ref=e35]:
+    - generic [ref=e36]:
+      - strong [ref=e37]: Cookies и сторонние сервисы
+      - paragraph [ref=e38]:
+        - text: "Сайт использует технические cookies для работы интерфейса. Яндекс.Метрика, виджеты сторонних площадок и сервис комментариев Disqus загружаются только после вашего согласия. Подробнее:"
+        - link "Политика обработки персональных данных" [ref=e39] [cursor=pointer]:
+          - /url: /politika-konfidentcialnosti.html
+        - text: .
+    - generic [ref=e40]:
+      - button "Принять" [ref=e41] [cursor=pointer]
+      - button "Отклонить" [ref=e42] [cursor=pointer]

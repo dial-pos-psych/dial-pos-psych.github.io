@@ -12715,52 +12715,111 @@ ul li {
 
 .search-field {
     position: absolute;
-    z-index: 4;
-    top: 60px;
-    left: 0;
+    z-index: 20;
+    top: 68px;
+    right: 12px;
+    left: auto;
     display: none;
-    width: 100%;
-    padding: 15px;
-    border-top: 1px solid #000;
-    background: #001438
+    width: 420px;
+    max-width: calc(100vw - 24px);
+    padding: 16px 6px 16px 16px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 16px;
+    background: #001438;
+    -webkit-box-shadow: 0 18px 36px rgba(0, 0, 0, .32);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, .32)
 }
 
+.search-field .site-search-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    gap: 10px;
+    margin: 0
+}
+
+.search-field input[type=search],
 .search-field input[type=text] {
-    width: 100%;
-    padding: 8px 15px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 48px;
+    padding: 0 16px;
     color: #fff;
-    border: 2px solid #fff;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 12px;
     outline: 0;
-    background: #001438
+    background: rgba(255, 255, 255, .08)
 }
 
+.search-field input[type=search]::-webkit-input-placeholder,
 .search-field input[type=text]::-webkit-input-placeholder {
     font-family: arial, sans-serif;
-    color: #fff
+    color: rgba(255, 255, 255, .72)
 }
 
+.search-field input[type=search]::-moz-placeholder,
 .search-field input[type=text]::-moz-placeholder {
     font-family: arial, sans-serif;
-    color: #fff
+    color: rgba(255, 255, 255, .72)
 }
 
+.search-field input[type=search]:-ms-input-placeholder,
 .search-field input[type=text]:-ms-input-placeholder {
     font-family: arial, sans-serif;
-    color: #fff
+    color: rgba(255, 255, 255, .72)
 }
 
+.search-field input[type=search]::-ms-input-placeholder,
 .search-field input[type=text]::-ms-input-placeholder {
     font-family: arial, sans-serif;
-    color: #fff
+    color: rgba(255, 255, 255, .72)
 }
 
+.search-field input[type=search]::placeholder,
 .search-field input[type=text]::placeholder {
     font-family: arial, sans-serif;
-    color: #fff
+    color: rgba(255, 255, 255, .72)
 }
 
+.search-field input[type=search]:focus,
 .search-field input[type=text]:focus {
-    border: 2px solid #ffc700
+    border-color: #ffc700;
+    background: rgba(255, 255, 255, .12);
+    -webkit-box-shadow: 0 0 0 3px rgba(255, 199, 0, .18);
+    box-shadow: 0 0 0 3px rgba(255, 199, 0, .18)
+}
+
+.search-field input[type=submit] {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    min-width: 122px;
+    height: 48px;
+    margin-left: 10px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 12px;
+    background: #ff5c00;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-transition: background-color .2s ease, color .2s ease, -webkit-transform .2s ease;
+    transition: background-color .2s ease, color .2s ease, -webkit-transform .2s ease;
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+    transition: background-color .2s ease, color .2s ease, transform .2s ease, -webkit-transform .2s ease
+}
+
+.search-field input[type=submit]:hover,
+.search-field input[type=submit]:focus {
+    background: #ffc700;
+    color: #001438
 }
 
 .search-page .header-main {
@@ -13608,6 +13667,8 @@ p.podpiska-zag {
 }
 
 .theme-switcher {
+    position: relative;
+    z-index: 3;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -14218,7 +14279,7 @@ body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .moon-icon
         align-items: center;
         -webkit-box-pack: distribute;
         -ms-flex-pack: distribute;
-        justify-content: space-evenly;
+        justify-content: space-between;
         height: 60px;
         padding: 0 12px
     }
@@ -14351,11 +14412,45 @@ body.dark-theme .theme-switcher .theme-switcher-wrapper:focus-visible .moon-icon
     }
 
     .top-line > .search-wrap > .search-field {
-        top: 60px
+        position: fixed;
+        top: 72px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        max-width: none;
+        padding: 12px
+    }
+
+    .top-line > .search-wrap > .search-field .site-search-form {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        gap: 8px
+    }
+
+    .top-line > .search-wrap > .search-field input[type=search],
+    .top-line > .search-wrap > .search-field input[type=text],
+    .top-line > .search-wrap > .search-field input[type=submit] {
+        width: 100%;
+        min-width: 0
+    }
+
+    .top-line > .search-wrap > .search-field input[type=submit] {
+        margin-left: 0;
+        margin-top: 8px
+    }
+
+    .top-line > .search-wrap > .search-field input[type=submit] {
+        height: 46px
     }
 
     /* desktop nav stays hidden on mobile */
     .top-line > .main-menu.top-menu {
+        display: none !important
+    }
+
+    .mobile-menu .theme-switcher {
         display: none !important
     }
 }

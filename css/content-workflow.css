@@ -40,9 +40,163 @@ body.dark-theme .article-body a.maxbutton:focus {
   color: #fff !important;
 }
 
+.cookie-consent {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  max-width: 760px;
+  padding: 16px;
+  color: #242424;
+  background: #fff;
+  border: 2px solid #001438;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+}
+
+.cookie-consent[hidden] {
+  display: none;
+}
+
+.cookie-consent__text {
+  flex: 1 1 auto;
+}
+
+.cookie-consent__text p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.cookie-consent__actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.cookie-consent__text a {
+  color: #024390;
+}
+
+.cookie-consent__accept {
+  padding: 10px 18px;
+}
+
+/* Кнопка «Отклонить» оформляется как кнопка (а не подчеркнутая ссылка),
+   в едином стиле с «Принять», но второстепенным нейтральным цветом. */
+.cookie-consent__reject {
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 12px 40px;
+  cursor: pointer;
+  transition: background-color .1s ease;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  border: 2px solid #001438;
+  border-radius: 8em;
+  outline: 0;
+  background-color: #001438;
+}
+
+.cookie-consent__reject:hover,
+.cookie-consent__reject:focus {
+  background-color: #112a52;
+  color: #fff;
+}
+
+/* Кнопка настроек cookies в блоке .polit оформляется как соседние ссылки,
+   а не как подчеркнутая синяя ссылка, чтобы визуально не выбиваться из ряда. */
+.polit-block .privacy-settings-link {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+.polit-block .privacy-settings-link:hover {
+  color: #ffc700;
+}
+
+.third-party-placeholder {
+  text-align: center;
+  background: #f9f9f9;
+  border-right: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  border-left: 5px solid #fff;
+}
+
+.third-party-placeholder p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+body.dark-theme .cookie-consent {
+  color: #f5f5f5;
+  background: #001438;
+  border-color: #ff5c00;
+}
+
+/* В тёмной теме ссылка внутри баннера должна быть контрастна к тёмно-синему
+   фону баннера, а не сливаться с ним. */
+body.dark-theme .cookie-consent__text a {
+  color: #ffc700;
+}
+
+body.dark-theme .cookie-consent__reject {
+  color: #fff;
+  border-color: #ff5c00;
+  background-color: #21252b;
+}
+
+body.dark-theme .cookie-consent__reject:hover,
+body.dark-theme .cookie-consent__reject:focus {
+  background-color: #2c3138;
+  color: #fff;
+}
+
+body.dark-theme .polit-block .privacy-settings-link {
+  color: #e0e0e0;
+}
+
+body.dark-theme .polit-block .privacy-settings-link:hover {
+  color: #ff5c00;
+}
+
+body.dark-theme .third-party-placeholder {
+  color: #e0e0e0;
+  background: #353b45;
+  border-right: 5px solid #5c6370;
+  border-bottom: 5px solid #5c6370;
+  border-left: 5px solid #5c6370;
+}
+
 @media (max-width: 575.98px) {
   .article-body .image-caption {
     font-size: 14px !important;
     line-height: 1.4;
+  }
+
+  .cookie-consent {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-consent__actions {
+    justify-content: flex-start;
   }
 }
