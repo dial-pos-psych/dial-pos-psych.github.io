@@ -1,37 +1,7 @@
 cd D:\dev\dial-pos-psych.github.io
+.\tools\publish-pages.ps1
 
-# 1. Проверка основной локальной версии
-dppb
-dpps
-
-# 2. Сохранить изменения основного проекта в GitHub, если нужно
-dppg "Update source site"
-
-# 3. Подготовить GitHub Pages-копию
-.\tools\sync-github-pages-site.ps1
-
-# 4. Собрать, закоммитить и отправить именно GitHub Pages-репозиторий
-bk
-
-Push-Location .\github-pages-site
-bundle exec jekyll build
-git status --short
-git add -A
-git commit -m "Update GitHub Pages site"
-git push origin main
-Pop-Location
-
-
-
-
+Без предпросмотра и подтверждения, если сайт уже проверен вручную:
 
 cd D:\dev\dial-pos-psych.github.io
-bk
-
-Push-Location .\github-pages-site
-bundle exec jekyll build
-git status --short
-git add -A
-git commit -m "Update GitHub Pages site"
-git push origin main
-Pop-Location
+.\tools\publish-pages.ps1 -SkipPreview -Yes
