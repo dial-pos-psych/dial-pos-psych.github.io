@@ -58,29 +58,11 @@
     updateControls(theme);
   }
 
-  function resetDisqus() {
-    if (typeof DISQUS === "undefined") {
-      return;
-    }
-
-    DISQUS.reset({
-      reload: true,
-      config: function () {
-        var identifier = document.querySelector(".disqus-identifier");
-        if (identifier) {
-          this.page.identifier = identifier.getAttribute("data-disqus-identifier");
-        }
-        this.page.url = window.location.href;
-      },
-    });
-  }
-
   function toggleTheme() {
     var current = getStoredTheme() || "light";
     var next = current === "dark" ? "light" : "dark";
     setStoredTheme(next);
     applyTheme(next);
-    resetDisqus();
   }
 
   function bindControls() {

@@ -12,9 +12,6 @@
                         </span>
                         <h1>{{ page.title }}</h1>
                         <div class="item-social">
-                            <div class="item-comments" title="Количество комментариев"> <i class="fa fa-comments"></i>
-                                <a href="{{ page.url }}#disqus_thread" class="item-comments-count"></a>
-                            </div>
                             <div class="likely likely-custom" data-url="{{ site.baseurl }}{{ page.url }}" data-media="{{ site.baseurl }}/{{ page.image }}" data-title="{{ page.title }}"> <i class="fa fa-share-alt" title="Поделиться в соц. сетях"></i>
                                 <div class="vkontakte" title="Поделиться Вконтакте">Вконтакте</div>
                                 <div class="telegram" title="Поделиться в Telegram">Telegram</div>
@@ -128,11 +125,7 @@
                             {% endunless %}
                             {% endfor %}
                         </ul>
-                    </div>
-
-
-                    <div class="comments">{% include /comments.html %}</div>
-                </article>
+                    </div>                </article>
             </div>
             <div class="col-md-5 col-lg-4">
                 <aside itemscope itemtype="http://schema.org/WPSideBar" class="main-aside aside1">

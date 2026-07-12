@@ -33,10 +33,8 @@ layout: default
               {% endif %}
             </a>
             <div class="item-social">
-              <div class="item-comments" title="Количество комментариев">
+              <div class="item-comments">
                 <span class="date">{{ post.date | date: "%d/%m/%Y" }}</span>
-                <i class="fa fa-comments"></i>
-                <a class="item-comments-count item-comments-count__black" href="{{ post.url }}#disqus_thread"></a>
               </div>
             </div>
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
@@ -51,10 +49,8 @@ layout: default
               <div class="item-title-content">
                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                 <div class="item-social">
-                  <div class="item-comments" title="Количество комментариев">
+                  <div class="item-comments">
                     <span class="date">{{ post.date | date: "%d/%m/%Y" }}</span>
-                    <i class="fa fa-comments"></i>
-                    <a class="item-comments-count" href="{{ post.url }}#disqus_thread"></a>
                   </div>
                 </div>
               </div>
