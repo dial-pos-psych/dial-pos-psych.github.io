@@ -60,12 +60,16 @@
     };
     window.ym.l = 1 * new Date();
 
-    loadScript("https://mc.yandex.ru/metrika/tag.js", function () {
+    loadScript("https://mc.yandex.ru/metrika/tag.js?id=" + encodeURIComponent(window.dppMetrika.id), function () {
       window.ym(window.dppMetrika.id, "init", {
+        ssr: true,
+        webvisor: true,
         clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
         trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: false
+        accurateTrackBounce: true
       });
     });
   }
